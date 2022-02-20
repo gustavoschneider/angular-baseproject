@@ -10,3 +10,8 @@ start:
 
 run: start
 	
+test:
+	ng test
+
+test-e2e:
+	ng e2e
