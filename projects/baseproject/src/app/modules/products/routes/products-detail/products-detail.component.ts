@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 
 import { ProductService } from '../../services/product.service';
 import { Product } from '../../data/product';
@@ -17,6 +17,7 @@ export class ProductsDetailComponent implements OnInit {
   constructor(
     private productService: ProductService,
     private formBuilder: FormBuilder,
+    private router: Router,
     private activatedRoute: ActivatedRoute
   ) { }
 
@@ -43,6 +44,7 @@ export class ProductsDetailComponent implements OnInit {
       let product = new Product(this.productForm.value);
       this.productService.saveProduct(product).subscribe(product => {
         this.productForm.patchValue(new Product(product));
+        this.router.navigate(['/products/list']);
       });
     }
     
