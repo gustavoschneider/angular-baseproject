@@ -8,7 +8,7 @@ import { FlexLayoutModule } from '@angular/flex-layout';
 import { MatButtonModule } from '@angular/material/button';
 import { MatSliderModule } from '@angular/material/slider';
 import { MatIconModule } from '@angular/material/icon';
-
+import { MatTableModule } from '@angular/material/table';
 @NgModule({
   declarations: [],
   imports: [
@@ -16,13 +16,15 @@ import { MatIconModule } from '@angular/material/icon';
     FlexLayoutModule,
     MatButtonModule,
     MatSliderModule,
-    MatIconModule
+    MatIconModule,
+    MatTableModule
   ],
   exports: [
     FlexLayoutModule,
     MatButtonModule,
     MatSliderModule,
-    MatIconModule
+    MatIconModule,
+    MatTableModule
   ]
 })
 export class UiModule { }
