@@ -1,0 +1,14 @@
+<div class="padding mat-elevation-z8">
+    <form [formGroup]="productForm" (ngSubmit)="onSubmit()">
+        <input type="number" formControlName="id" hidden="true">
+        <mat-form-field class="full-width" appearance="fill">
+            <mat-label>Name</mat-label>
+            <input matInput type="text" formControlName="name" placeholder="Super Product">
+        </mat-form-field>
+        <mat-form-field class="full-width" appearance="fill">
+            <mat-label>Description</mat-label>
+            <textarea matInput formControlName="description"></textarea>
+        </mat-form-field>
+        <button mat-raised-button color="primary" type="submit" [disabled]="!productForm.valid">Submit</button>
+    </form>
+</div>
