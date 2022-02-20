@@ -28,6 +28,13 @@ export class ProductService {
         catchError(this.handleError<Product>('getProduct'))
       );
   }
+  saveProduct(product: Product): Observable<Product> {
+    if(product.id) {
+      return this.updateProduct(product);
+    } else {
+      return this.createProduct(product);
+    }
+  }
 
   createProduct(product: Product): Observable<Product> {
     return this.httpClient.post<Product>(this.product_api, product)
@@ -36,15 +43,15 @@ export class ProductService {
       )
   }
 
-  updateProduct(product: Product): Observable<any> {
-    return this.httpClient.patch(this.product_api, product)
+  updateProduct(product: Product): Observable<Product> {
+    return this.httpClient.patch<Product>(this.product_api + '/' + product.id?.toString(), product)
       .pipe(
-        catchError(this.handleError<any>('updateProduct'))
+        catchError(this.handleError<Product>('updateProduct'))
       )
   }
 
   deleteProduct(product: Product): Observable<any> {
-    return this.httpClient.delete(this.product_api + '/' + product.id!.toString())
+    return this.httpClient.delete(this.product_api + '/' + product.id?.toString())
       .pipe(
         catchError(this.handleError<any>('deleteProduct'))
       );
