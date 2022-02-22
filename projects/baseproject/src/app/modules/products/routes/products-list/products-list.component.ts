@@ -10,7 +10,7 @@ import { ProductService } from '../../services/product.service';
 })
 export class ProductsListComponent implements OnInit, AfterViewInit {
 
-  displayedColumns: string[] = ['id', 'name', 'description'];
+  displayedColumns: string[] = ['id', 'name', 'description', 'actions'];
   data: Product[] = [];
   constructor(private productService: ProductService) {
    }
@@ -19,6 +19,17 @@ export class ProductsListComponent implements OnInit, AfterViewInit {
   }
 
   ngAfterViewInit(): void {
+    this.loadProducts();
+  }
+
+  deleteProduct(event: MouseEvent, product: Product) {
+    event.stopPropagation();
+    this.productService.deleteProduct(product).subscribe(data => {
+      this.loadProducts();
+    });
+  }
+
+  private loadProducts() {
     this.productService.getProducts().subscribe(products => {
       this.data = products;
     });
